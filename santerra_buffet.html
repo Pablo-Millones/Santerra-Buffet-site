@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santerra Buffet | Viña del Mar</title>
+    <meta name="description" content="Buffet gourmet en Casino Enjoy Viña del Mar. Desayuno, almuerzo y cena con estación de pastas en vivo.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#6B1C20',
+                        'primary-hover': '#8a2329',
+                        'primary-light': '#8B3A42',
+                        'accent': '#C9A84C',
+                        'accent-light': '#D4B96A',
+                        'gold': '#C9A84C',
+                        'dark': '#1A1A1A',
+                        'dark-warm': '#2A1A1C',
+                        'cream': '#FAF7F2',
+                        'bg-light': '#F5F3EE',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(28, 28, 28, 0.7), rgba(28, 28, 28, 0.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                        'pasta-pattern': "linear-gradient(to right, rgba(28, 28, 28, 0.9), rgba(28, 28, 28, 0.5)), url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f4f4f6; }
+        ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8962f; }
+        .hamburger-active .bar1 { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-active .bar2 { opacity: 0; }
+        .hamburger-active .bar3 { transform: rotate(-45deg) translate(7px, -6px); }
+        .btn-primary { @apply bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary-hover transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-md; }
+        .btn-accent { @apply bg-accent text-dark px-8 py-3 rounded-full font-bold hover:bg-accent-light transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-md; }
+        .btn-outline { @apply bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-dark transition-all duration-300 hover:-translate-y-0.5; }
+        .btn-primary-sm { @apply bg-primary text-white px-6 py-2 rounded-full font-bold hover:bg-primary-hover transition-all duration-300 shadow-md hover:shadow-lg; }
+    </style>
+</head>
+<body class="font-sans text-dark bg-bg-light antialiased selection:bg-primary selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <h1 class="font-serif text-2xl md:text-3xl font-bold text-white tracking-wider uppercase">
+                        Santerra <span class="text-accent">Buffet</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#experiencia" class="text-white hover:text-accent transition-colors font-medium text-sm tracking-wide uppercase">Experiencia</a>
+                    <a href="#horarios" class="text-white hover:text-accent transition-colors font-medium text-sm tracking-wide uppercase">Horarios</a>
+                    <a href="#precios" class="text-white hover:text-accent transition-colors font-medium text-sm tracking-wide uppercase">Precios</a>
+                    <a href="#ubicacion" class="text-white hover:text-accent transition-colors font-medium text-sm tracking-wide uppercase">Ubicación</a>
+                    <a href="https://www.instagram.com/santerra_buffet/" target="_blank" class="text-white hover:text-accent transition-all duration-300 text-xl hover:scale-110">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/56935621667" target="_blank" class="text-white hover:text-accent transition-all duration-300 text-xl hover:scale-110">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#reservas" class="btn-accent">Reservas</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-accent focus:outline-none flex flex-col gap-1.5 p-2">
+                        <span class="bar1 w-6 h-0.5 bg-current transition-all duration-300"></span>
+                        <span class="bar2 w-6 h-0.5 bg-current transition-all duration-300"></span>
+                        <span class="bar3 w-6 h-0.5 bg-current transition-all duration-300"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md absolute w-full shadow-xl border-t border-white/10">
+            <div class="px-4 pt-4 pb-8 space-y-2 text-center">
+                <a href="#experiencia" class="block px-4 py-3 text-white hover:text-accent hover:bg-white/5 rounded-lg uppercase text-sm tracking-wide font-medium transition-all">Experiencia</a>
+                <a href="#horarios" class="block px-4 py-3 text-white hover:text-accent hover:bg-white/5 rounded-lg uppercase text-sm tracking-wide font-medium transition-all">Horarios</a>
+                <a href="#precios" class="block px-4 py-3 text-white hover:text-accent hover:bg-white/5 rounded-lg uppercase text-sm tracking-wide font-medium transition-all">Precios</a>
+                <a href="#ubicacion" class="block px-4 py-3 text-white hover:text-accent hover:bg-white/5 rounded-lg uppercase text-sm tracking-wide font-medium transition-all">Ubicación</a>
+                <a href="#reservas" class="block px-4 py-3 text-white hover:text-accent hover:bg-white/5 rounded-lg uppercase text-sm tracking-wide font-medium transition-all">Reservas</a>
+                <div class="flex justify-center gap-6 pt-4 border-t border-white/10 mt-4">
+                    <a href="https://www.instagram.com/santerra_buffet/" target="_blank" class="text-accent hover:text-white transition-colors text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/56935621667" target="_blank" class="text-accent hover:text-white transition-colors text-2xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="text-center px-4 z-10 max-w-4xl mx-auto mt-16">
+            <div class="inline-flex items-center gap-3 mb-6 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20">
+                <i class="fas fa-star text-accent text-xs"></i>
+                <a href="https://www.enjoy.cl/" target="_blank" class="text-white text-sm font-medium tracking-widest uppercase hover:text-accent transition-colors">
+                    Buffet Gourmet en Enjoy Viña del Mar
+                </a>
+                <i class="fas fa-star text-accent text-xs"></i>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Elige lo que <span class="text-accent italic">más amas</span>
+            </h2>
+            <p class="text-lg md:text-2xl text-gray-200 mb-10 font-light max-w-2xl mx-auto">
+                Variedad fresca todos los días. Disfruta de una experiencia culinaria única frente al mar en Viña del Mar.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#horarios" class="btn-accent">
+                    Ver Horarios y Precios
+                </a>
+                <a href="#experiencia" class="btn-outline">
+                    Descubrir Más
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="py-24 bg-bg-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-primary font-medium tracking-widest uppercase text-sm mb-2">Una experiencia completa</h3>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">Para Cada Momento del Día</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center group p-8 rounded-2xl hover:bg-white transition-colors duration-300 shadow-sm border border-black/5">
+                    <div class="w-20 h-20 mx-auto bg-dark rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                        <span class="text-4xl">🍳</span>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-dark mb-3">Desayuno</h3>
+                    <p class="text-gray-600">Comienza tu día con energía, variedad de panes, frutas frescas, jugos y el mejor café.</p>
+                </div>
+                <div class="text-center group p-8 rounded-2xl hover:bg-white transition-colors duration-300 shadow-sm border border-black/5">
+                    <div class="w-20 h-20 mx-auto bg-dark rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                        <span class="text-4xl">🍝</span>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-dark mb-3">Almuerzo</h3>
+                    <p class="text-gray-600">Una selección inigualable de platos internacionales, carnes, mariscos y acompañamientos.</p>
+                </div>
+                <div class="text-center group p-8 rounded-2xl hover:bg-white transition-colors duration-300 shadow-sm border border-black/5">
+                    <div class="w-20 h-20 mx-auto bg-dark rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                        <span class="text-4xl">🥂</span>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-dark mb-3">Cena</h3>
+                    <p class="text-gray-600">Veladas perfectas con preparaciones gourmet, ideal para compartir y celebrar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-pasta-pattern bg-cover bg-center bg-fixed relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl text-white">
+                <div class="inline-block bg-primary text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
+                    Nuestra Especialidad
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
+                    El Arte de la <span class="italic text-accent">Pasta en Vivo</span> 🍅🧄🧀
+                </h2>
+                <p class="text-lg text-gray-200 mb-8 leading-relaxed">
+                    En Santerra, cada plato de pasta cobra vida al momento, permitiéndote disfrutar sabores frescos, ingredientes seleccionados y preparaciones hechas justo como te gustan.
+                </p>
+                <div class="mt-12 bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl">
+                    <h3 class="text-2xl font-serif font-bold text-accent mb-3 flex items-center">
+                        <i class="fas fa-wand-magic-sparkles mr-3 text-white"></i> Crea tu Pasta Ideal con IA
+                    </h3>
+                    <p class="text-gray-200 mb-6 text-sm md:text-base">¿No sabes qué elegir? Dinos qué se te antoja hoy y nuestro Chef Virtual creará la combinación perfecta.</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="pasta-craving" placeholder="Ej: algo cremoso con champiñones..." class="flex-1 px-4 py-3 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-accent bg-white/90">
+                        <button id="generate-pasta-btn" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-hover transition-colors flex items-center justify-center whitespace-nowrap">
+                            <i class="fas fa-utensils mr-2"></i> Inspirarme
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="horarios" class="py-24 bg-bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">Información para tu Visita</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border-t-8 border-primary">
+                    <h3 class="text-3xl font-serif font-bold text-dark mb-8 flex items-center">
+                        <i class="far fa-clock text-primary mr-4"></i> Horario de Atención
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex flex-col sm:flex-row justify-between border-b border-gray-100 pb-4">
+                            <div><h4 class="text-xl font-bold text-dark">Desayuno Buffet</h4><p class="text-gray-500 font-medium">Lunes a Domingo</p></div>
+                            <div class="mt-2 sm:mt-0"><span class="inline-block bg-gray-100 text-dark px-4 py-2 rounded-lg font-mono font-bold">07:00 - 11:00</span></div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between border-b border-gray-100 pb-4">
+                            <div><h4 class="text-xl font-bold text-dark">Almuerzo Buffet</h4><p class="text-gray-500 font-medium">Lunes a Domingo</p></div>
+                            <div class="mt-2 sm:mt-0"><span class="inline-block bg-gray-100 text-dark px-4 py-2 rounded-lg font-mono font-bold">13:00 - 16:00</span></div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between border-b border-gray-100 pb-4">
+                            <div><h4 class="text-xl font-bold text-dark">Cena (Lun-Jue)</h4><p class="text-gray-500 font-medium">Lunes a Jueves</p></div>
+                            <div class="mt-2 sm:mt-0"><span class="inline-block bg-gray-100 text-dark px-4 py-2 rounded-lg font-mono font-bold">19:00 - 23:00</span></div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between border-b border-gray-100 pb-4">
+                            <div><h4 class="text-xl font-bold text-dark">Cena (Vie-Sáb)</h4><p class="text-gray-500 font-medium">Viernes y Sábado</p></div>
+                            <div class="mt-2 sm:mt-0"><span class="inline-block bg-gray-100 text-dark px-4 py-2 rounded-lg font-mono font-bold">19:00 - 00:00</span></div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-between pb-4">
+                            <div><h4 class="text-xl font-bold text-dark">Cena (Domingo)</h4><p class="text-gray-500 font-medium">Domingo</p></div>
+                            <div class="mt-2 sm:mt-0"><span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold">CERRADO</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="precios" class="bg-dark text-white rounded-3xl shadow-xl p-8 md:p-12 relative overflow-hidden">
+                    <div class="text-center mb-8">
+                        <span class="inline-block bg-accent/20 text-accent px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4">Nuevos Precios</span>
+                        <h3 class="text-3xl font-serif font-bold text-white">Valores por Persona</h3>
+                        <p class="text-gray-400 text-sm mt-2">Mismos sabores, misma experiencia</p>
+                    </div>
+                    <div class="space-y-4 mt-8">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex items-center justify-between hover:bg-white/10 transition-colors">
+                            <div><h4 class="text-lg font-bold text-accent">Desayuno</h4><p class="text-gray-400 text-xs">Lunes a Domingo</p></div>
+                            <div class="text-2xl font-bold font-serif">$12.500</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex items-center justify-between hover:bg-white/10 transition-colors">
+                            <div><h4 class="text-lg font-bold text-accent">Almuerzo/Cena</h4><p class="text-gray-400 text-xs">Lunes a Jueves</p></div>
+                            <div class="text-2xl font-bold font-serif">$24.500</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex items-center justify-between hover:bg-white/10 transition-colors">
+                            <div><h4 class="text-lg font-bold text-accent">Almuerzo/Cena</h4><p class="text-gray-400 text-xs">Viernes a Domingo</p></div>
+                            <div class="text-2xl font-bold font-serif">$28.500</div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/10">
+                            <h4 class="text-sm font-bold text-accent uppercase tracking-widest mb-4 text-center">Niños</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between text-gray-300">
+                                    <span>0 a 3 años</span>
+                                    <span class="text-accent font-bold">Entrada liberada</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>4 a 10 años</span>
+                                    <span class="text-accent font-bold">50% descuento</span>
+                                </div>
+                                <div class="flex justify-between text-gray-300">
+                                    <span>11 años o más</span>
+                                    <span class="text-accent font-bold">Valor adulto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="text-center px-4 z-10 max-w-4xl mx-auto mt-16">
+            <div class="inline-flex items-center gap-3 mb-6 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20">
+                <i class="fas fa-star text-accent text-xs"></i>
+                <a href="https://www.enjoy.cl/" target="_blank" class="text-white text-sm font-medium tracking-widest uppercase hover:text-accent transition-colors">
+                    Buffet Gourmet en Enjoy Viña del Mar
+                </a>
+                <i class="fas fa-star text-accent text-xs"></i>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Elige lo que <span class="text-accent italic">más amas</span>
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#horarios" class="btn-accent">
+                    Ver Horarios y Precios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservas" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-serif font-bold text-dark mb-4">Reserva tu Mesa</h2>
+                <p class="text-gray-600">Completa el formulario y recibe confirmación por WhatsApp y email.</p>
+            </div>
+            <form id="reservation-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-bg-light p-8 rounded-3xl border border-gray-200">
+                <input type="text" id="res-name" placeholder="Tu Nombre" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <input type="tel" id="res-phone" placeholder="+56 9 XXXX XXXX" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <input type="email" id="res-email" placeholder="Tu email (para confirmación)" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <input type="date" id="res-date" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <input type="time" id="res-time" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <input type="number" id="res-people" placeholder="Nº de personas" min="1" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary">
+                <div class="md:col-span-2">
+                    <button type="submit" id="res-submit" class="btn-primary w-full text-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+            <div id="res-confirm" class="hidden mt-8 p-6 bg-green-50 border border-green-200 rounded-2xl text-center">
+                <i class="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
+                <h3 class="text-xl font-bold text-dark mb-2">¡Reserva Confirmada!</h3>
+                <p id="res-confirm-msg" class="text-gray-600 mb-4"></p>
+                <a id="res-wa-link" href="#" target="_blank" class="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600 transition-colors">
+                    <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="llegar" class="py-24 bg-bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-primary font-medium tracking-widest uppercase text-sm mb-2">Visítanos</h3>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark mb-4">Cómo Llegar</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border-t-8 border-primary">
+                    <h3 class="text-3xl font-serif font-bold text-dark mb-6 flex items-center">
+                        <i class="fas fa-map-marker-alt text-primary mr-4"></i> Santerra Buffet
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-location-dot text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark text-lg">Dirección</h4>
+                                <p class="text-gray-600">Avenida San Martín 199, Casino Enjoy<br>Viña del Mar, Chile</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-car text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark text-lg">En Auto</h4>
+                                <p class="text-gray-600">Estacionamiento disponible en Casino Enjoy. Acceso por Avenida San Martín.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bus text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark text-lg">Transporte Público</h4>
+                                <p class="text-gray-600">Líneas de micro cerca del Casino Enjoy. Parada en Av. San Martín.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/place/Buffet+Santerra+Vi%C3%B1a+del+Mar/@-33.0185041,-71.5608339,17z/data=!3m1!4b1!4m6!3m5!1s0x9689dda0802a9d45:0x422c655e48ed166c!8m2!3d-33.0185041!4d-71.5608339!16s%2Fg%2F11k9fd38v6" target="_blank" class="mt-8 inline-flex items-center gap-2 btn-primary">
+                        <i class="fab fa-google"></i> Abrir en Google Maps
+                    </a>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-xl h-96 lg:h-full min-h-[400px] border border-gray-200">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=-33.0185041,-71.5608339&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación Santerra Buffet">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="ubicacion" class="bg-dark pt-20 pb-10 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-white">
+                <div>
+                    <h2 class="font-serif text-3xl font-bold text-white tracking-wider uppercase mb-6">Santerra <span class="text-primary">Buffet</span></h2>
+                    <p class="text-gray-400">Vive la mejor experiencia buffet de la región.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6">Contacto</h4>
+                    <p class="text-gray-400">Casino Enjoy, Viña del Mar<br>Avenida San Martín 199</p>
+                    <p class="text-gray-400 mt-4"><i class="fab fa-whatsapp text-accent mr-2"></i><a href="https://wa.me/56935621667" target="_blank" class="hover:text-accent transition-colors">+56 9 3562 1667</a></p>
+                </div>
+                <div class="text-center">
+                    <a href="https://www.instagram.com/santerra_buffet/" target="_blank" class="text-accent hover:text-white transition-colors text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/56935621667" target="_blank" class="text-accent hover:text-white transition-colors text-2xl ml-4">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-dark', 'shadow-lg');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('hamburger-active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('hamburger-active');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Pasta AI Chef - via local proxy
+        const generatePastaBtn = document.getElementById('generate-pasta-btn');
+        const pastaCraving = document.getElementById('pasta-craving');
+        const PROXY_URL = '/api/pasta';
+
+        if (generatePastaBtn) {
+            generatePastaBtn.addEventListener('click', async function() {
+                const craving = pastaCraving.value.trim();
+                if (!craving) {
+                    alert('Cuéntanos qué se te antoja hoy para inspirarte.');
+                    return;
+                }
+
+                generatePastaBtn.disabled = true;
+                generatePastaBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creando...';
+
+                try {
+                    const response = await fetch(PROXY_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            model: 'meta/llama-3.1-8b-instruct',
+                            messages: [{
+                                role: 'user',
+                                content: `Eres un chef italiano experto en pastas del buffet Santerra en Viña del Mar. El cliente dice: "${craving}". Sugiere UNA sola receta de pasta con: nombre creativo, pasta base, salsa, 3 ingredientes principales, y una frase corta de presentación. Responde en español, máximo 4 líneas, tono cálido y apetitoso.`
+                            }],
+                            max_tokens: 300,
+                            temperature: 0.7
+                        })
+                    });
+
+                    const data = await response.json();
+                    const suggestion = data.choices?.[0]?.message?.content;
+
+                    if (suggestion) {
+                        const existing = document.getElementById('pasta-result');
+                        if (existing) {
+                            existing.innerHTML = suggestion;
+                            existing.classList.remove('hidden');
+                        } else {
+                            const div = document.createElement('div');
+                            div.id = 'pasta-result';
+                            div.className = 'mt-4 p-4 bg-white/10 rounded-xl border border-white/20 text-white text-sm leading-relaxed';
+                            div.innerHTML = suggestion;
+                            generatePastaBtn.closest('div').parentElement.appendChild(div);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error al conectar con el Chef Virtual. Intenta de nuevo.');
+                } finally {
+                    generatePastaBtn.disabled = false;
+                    generatePastaBtn.innerHTML = '<i class="fas fa-utensils mr-2"></i> Inspirarme';
+                }
+            });
+
+            pastaCraving.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    generatePastaBtn.click();
+                }
+            });
+        }
+
+        // Reservation Form
+        const reservationForm = document.getElementById('reservation-form');
+        const resSubmit = document.getElementById('res-submit');
+        const resConfirm = document.getElementById('res-confirm');
+        const resConfirmMsg = document.getElementById('res-confirm-msg');
+        const resWaLink = document.getElementById('res-wa-link');
+        const resDate = document.getElementById('res-date');
+
+        if (resDate) {
+            const today = new Date().toISOString().split('T')[0];
+            resDate.setAttribute('min', today);
+        }
+
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('res-name').value.trim();
+                const phone = document.getElementById('res-phone').value.trim();
+                const email = document.getElementById('res-email').value.trim();
+                const date = document.getElementById('res-date').value;
+                const time = document.getElementById('res-time').value;
+                const people = document.getElementById('res-people').value;
+
+                if (!name || !phone || !date || !time || !people) {
+                    alert('Por favor completa todos los campos obligatorios.');
+                    return;
+                }
+
+                resSubmit.disabled = true;
+                resSubmit.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Procesando...';
+
+                try {
+                    const response = await fetch('/api/reservas', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, phone, email, date, time, people: parseInt(people) })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        reservationForm.classList.add('hidden');
+                        resConfirm.classList.remove('hidden');
+                        resConfirmMsg.textContent = data.message + ' Te enviamos un email de confirmación.';
+                        resWaLink.href = data.whatsapp_link;
+                        resWaLink.target = '_blank';
+                    } else {
+                        alert('Error al procesar la reserva. Intenta de nuevo.');
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error al conectar con el servidor. Intenta de nuevo.');
+                } finally {
+                    resSubmit.disabled = false;
+                    resSubmit.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> Confirmar Reserva';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

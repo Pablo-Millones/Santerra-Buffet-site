@@ -1,0 +1,21 @@
+{
+  "name": "Buffet Santerra Viña del Mar",
+  "short_name": "Santerra Buffet",
+  "description": "Buffet libre premium en Viña del Mar con variedad internacional y ambiente elegante",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6b35",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface-2: #1a1a24;
+  --gold: #c8a97e;
+  --gold-dark: #b8945a;
+  --gold-light: #dfc9a4;
+  --text-primary: #f5f0eb;
+  --text-secondary: #a09888;
+  --text-muted: #6b6558;
+  --border: #1f1f2b;
+  --border-light: #2a2a38;
+  --success: #7dab7d;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-light: var(--gold-light);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-success: var(--success);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+@layer utilities {
+  .container-lux {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl text-text-primary tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-text-secondary text-lg leading-relaxed max-w-2xl;
+  }
+
+  .divider-gold {
+    @apply w-16 h-px bg-gold/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gold text-bg font-medium rounded-sm tracking-wider uppercase text-xs transition-all duration-300 hover:bg-gold-dark hover:shadow-lg hover:shadow-gold/10;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-gold/40 text-gold-light font-medium rounded-sm tracking-wider uppercase text-xs transition-all duration-300 hover:bg-gold/10 hover:border-gold/60;
+  }
+
+  .card-lux {
+    @apply bg-surface border border-border rounded-sm transition-all duration-300;
+  }
+
+  .card-lux:hover {
+    @apply border-border-light;
+  }
+
+  .glass-nav {
+    @apply bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-border;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}

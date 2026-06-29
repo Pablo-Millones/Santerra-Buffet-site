@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest buffet-santerra-viña-del-mar --ts --tailwind --eslint --app --src-dir --import-path \"@/*\" --use-npm)",
+      "Bash(mkdir -p \"/c/Users/Pablo/Desktop/proyectos/buffet-santerra/public/assets/img\")",
+      "Bash(mkdir -p \"/c/Users/Pablo/Desktop/proyectos/buffet-santerra/public/assets/video\")",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(kill *)",
+      "Bash(taskkill *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3001)",
+      "PowerShell(taskkill *)"
+    ]
+  }
+}
