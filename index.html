@@ -124,7 +124,7 @@
                 Elige lo que <span class="text-primary italic">más amas</span>
             </h2>
             <p class="text-lg md:text-xl text-gray-200 mb-8 font-light max-w-2xl mx-auto">
-                Buffet gourmet frente al mar, estación de pastas en vivo y open bar en cena. Vive la experiencia.
+                ¡Bienvenido a Santerra! Pastas en vivo, open bar y la mejor vista al mar. Vive el placer de comer bien.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#horarios" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-dark transition-all duration-300 hover:-translate-y-0.5">
@@ -184,13 +184,13 @@
                     En Santerra, cada plato de pasta cobra vida al momento, permitiéndote disfrutar sabores frescos, ingredientes seleccionados y preparaciones hechas justo como te gustan.
                 </p>
                 <div class="mt-12 bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-xl">
-                    <h3 class="text-2xl font-serif font-bold text-accent mb-3 flex items-center">
-                        <i class="fas fa-wand-magic-sparkles mr-3 text-white"></i> Crea tu Pasta Ideal con IA
+                    <h3 class="text-2xl font-serif font-bold text-gold mb-3 flex items-center">
+                        <i class="fas fa-wand-magic-sparkles mr-3 text-gold"></i> Crea tu Pasta Ideal con IA
                     </h3>
                     <p class="text-gray-200 mb-6 text-sm md:text-base">¿No sabes qué elegir? Dinos qué se te antoja hoy y nuestro Chef Virtual creará la combinación perfecta.</p>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <input type="text" id="pasta-craving" placeholder="Ej: algo cremoso con champiñones..." class="flex-1 px-4 py-3 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-accent bg-white/90">
-                        <button id="generate-pasta-btn" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-hover transition-colors flex items-center justify-center whitespace-nowrap">
+                        <button id="generate-pasta-btn" class="bg-gold text-white px-6 py-3 rounded-lg font-bold hover:bg-[#b8962f] transition-colors flex items-center justify-center whitespace-nowrap">
                             <i class="fas fa-utensils mr-2"></i> Inspirarme
                         </button>
                     </div>
@@ -870,6 +870,18 @@
             autoplayInterval = setInterval(galleryNext, 5000);
         });
 
+        function mostrarToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.remove('opacity-0', 'translate-y-4');
+            t.classList.add('opacity-100', 'translate-y-0');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => {
+                t.classList.add('opacity-0', 'translate-y-4');
+                t.classList.remove('opacity-100', 'translate-y-0');
+            }, 2500);
+        }
+
         function copiarDatosBancarios() {
             const texto = [
                 'Datos para transferencia - Santerra Buffet',
@@ -882,6 +894,7 @@
                 'Correo: leogenovese.contacto@gmail.com'
             ].join('\n');
             navigator.clipboard.writeText(texto).then(() => {
+                mostrarToast('✅ Datos bancarios copiados al portapapeles');
                 const btn = event.target.closest('button');
                 const original = btn.innerHTML;
                 btn.innerHTML = '<i class=\"fas fa-check mr-2\"></i> Copiado';
@@ -895,5 +908,7 @@
             });
         }
     </script>
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] bg-dark text-white px-6 py-3 rounded-full shadow-2xl text-sm font-medium opacity-0 translate-y-4 transition-all duration-500 pointer-events-none"></div>
+</body>
 </body>
 </html>
