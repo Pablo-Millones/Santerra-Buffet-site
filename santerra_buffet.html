@@ -195,63 +195,113 @@
         </div>
     </section>
 
-    <section id="galeria" class="py-24 bg-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeria" class="py-24 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center mb-16">
                 <h3 class="text-accent font-medium tracking-widest uppercase text-sm mb-2">Nuestra Esencia</h3>
                 <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Galería</h2>
                 <div class="w-24 h-1 bg-accent mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_724133790_17886932073571460_3242714873766376402_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <!-- Fotos -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_724133790_17886932073571460_3242714873766376402_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Experiencia Buffet</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_725237275_17886932082571460_7706802138612610907_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_725237275_17886932082571460_7706802138612610907_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Variedad Fresca</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Platos Gourmet</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Frente al Mar</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Postres y Más</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Ambiente Único</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">En Vivo</p>
+                    </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer" onclick="openLightbox(this)">
-                    <img src="assets/galeria/Ven a descubrir por qué nuestras pastas son una de las estaciones favoritas de Santerra. ❤️🍝.jpg" alt="Santerra Buffet Pastas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/galeria/Ven a descubrir por qué nuestras pastas son una de las estaciones favoritas de Santerra. ❤️🍝.jpg" alt="Santerra Buffet Pastas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-white text-sm font-medium">Pastas en Vivo</p>
+                    </div>
                 </div>
             </div>
 
+            <!-- Videos -->
             <div class="mt-16">
                 <h3 class="text-2xl font-serif font-bold text-white mb-8 text-center">Videos</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="rounded-2xl overflow-hidden shadow-xl">
-                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQMV4FF0KUWEowIhzVhqrgJynnBymIf-jzLKBm9EzE-H1J8pfexkFxznkvock3iuy2wLYw26OrGIpukC9ms-KhwAY9SrarVBPc_6U00.mp4" class="w-full aspect-[9/16] object-cover" preload="none" controls playsinline></video>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer video-card" onclick="playVideo(this)">
+                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQMV4FF0KUWEowIhzVhqrgJynnBymIf-jzLKBm9EzE-H1J8pfexkFxznkvock3iuy2wLYw26OrGIpukC9ms-KhwAY9SrarVBPc_6U00.mp4" poster="assets/galeria/SaveClip.App_724133790_17886932073571460_3242714873766376402_n.jpg" class="w-full aspect-[9/16] object-cover" preload="none" playsinline></video>
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all duration-300">
+                            <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <i class="fas fa-play text-dark text-lg ml-1"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-xl">
-                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQO5_2AxeSLwkicFcnkXZaD1lHaTRkEK4dHcjDAqH32AjFhcfvLY5JHeNAKM0Q4iNHv-K-y85W4KlOHMlfP0FmynDyleb-qounWXwDM.mp4" class="w-full aspect-[9/16] object-cover" preload="none" controls playsinline></video>
+                    <div class="group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer video-card" onclick="playVideo(this)">
+                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQO5_2AxeSLwkicFcnkXZaD1lHaTRkEK4dHcjDAqH32AjFhcfvLY5JHeNAKM0Q4iNHv-K-y85W4KlOHMlfP0FmynDyleb-qounWXwDM.mp4" poster="assets/galeria/SaveClip.App_725237275_17886932082571460_7706802138612610907_n.jpg" class="w-full aspect-[9/16] object-cover" preload="none" playsinline></video>
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all duration-300">
+                            <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <i class="fas fa-play text-dark text-lg ml-1"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-xl">
-                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQOHK7jf1wt3CXh6UQUYPnoJ0f4iTOq0Gp3HlJdBG1LEuor8ZZ_IdYEdB-MQibYpDMUQE21bI_R2wWTu6ismZjG0YD_7p_n9CvGnQGY.mp4" class="w-full aspect-[9/16] object-cover" preload="none" controls playsinline></video>
+                    <div class="group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer video-card" onclick="playVideo(this)">
+                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQOHK7jf1wt3CXh6UQUYPnoJ0f4iTOq0Gp3HlJdBG1LEuor8ZZ_IdYEdB-MQibYpDMUQE21bI_R2wWTu6ismZjG0YD_7p_n9CvGnQGY.mp4" poster="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" class="w-full aspect-[9/16] object-cover" preload="none" playsinline></video>
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all duration-300">
+                            <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <i class="fas fa-play text-dark text-lg ml-1"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-xl">
-                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQPP0_NIiD_bTNarsgBGi4YbRMpDpipIvSrUqq9JRg7smDtMSjwm3NWVq0tQfNrXLy_OjO5Dq_e09-fe8ZJN0E7UkHg6jfRciOya8WQ.mp4" class="w-full aspect-[9/16] object-cover" preload="none" controls playsinline></video>
+                    <div class="group relative rounded-2xl overflow-hidden shadow-xl cursor-pointer video-card" onclick="playVideo(this)">
+                        <video src="buffet-santerra/public/assets/video/SaveClip.App_AQPP0_NIiD_bTNarsgBGi4YbRMpDpipIvSrUqq9JRg7smDtMSjwm3NWVq0tQfNrXLy_OjO5Dq_e09-fe8ZJN0E7UkHg6jfRciOya8WQ.mp4" poster="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" class="w-full aspect-[9/16] object-cover" preload="none" playsinline></video>
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all duration-300">
+                            <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <i class="fas fa-play text-dark text-lg ml-1"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -666,6 +716,60 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Video Play/Pause
+        function playVideo(el) {
+            const video = el.querySelector('video');
+            const overlay = el.querySelector('div');
+            const icon = el.querySelector('i');
+
+            if (video.paused) {
+                // Pausar todos los demás videos
+                document.querySelectorAll('.video-card video').forEach(v => {
+                    if (v !== video) {
+                        v.pause();
+                        v.closest('.video-card').querySelector('div').classList.remove('hidden');
+                        v.closest('.video-card').querySelector('div').style.opacity = '1';
+                    }
+                });
+
+                video.play();
+                overlay.style.opacity = '0';
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            } else {
+                video.pause();
+                overlay.style.opacity = '1';
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            }
+
+            video.addEventListener('ended', function() {
+                overlay.style.opacity = '1';
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            });
+        }
+
+        // Scroll Animations for Gallery
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                    galleryObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item, .video-card').forEach((item, i) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px) scale(0.95)';
+            item.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
+            galleryObserver.observe(item);
         });
     </script>
 </body>
