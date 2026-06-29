@@ -199,7 +199,7 @@
         </div>
     </section>
 
-    <section id="galeria" class="py-24 bg-dark relative overflow-hidden">
+    <section id="galeria" class="py-24 bg-dark relative overflow-x-hidden">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
@@ -295,12 +295,11 @@
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <a href="https://www.instagram.com/santerra_buffet/" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white px-8 py-3 rounded-full font-bold hover:scale-105 hover:shadow-2xl hover:brightness-110 transition-all duration-300 shadow-lg">
+            <div class="text-center mt-12 relative z-30">
+                <a href="https://www.instagram.com/santerra_buffet/" target="_blank" id="instagram-btn" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white px-8 py-3 rounded-full font-bold hover:scale-105 hover:shadow-2xl hover:brightness-110 transition-all duration-300 shadow-lg cursor-pointer">
                     <i class="fab fa-instagram text-xl"></i> Síguenos en Instagram
                 </a>
             </div>
-        </div>
     </section>
 
     <!-- Lightbox -->
@@ -928,8 +927,12 @@
                 }, 2500);
             });
         }
+
+        document.getElementById('instagram-btn')?.addEventListener('click', function(e) {
+            window.open(this.href, '_blank');
+            e.preventDefault();
+        });
     </script>
     <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] bg-dark text-white px-6 py-3 rounded-full shadow-2xl text-sm font-medium opacity-0 translate-y-4 transition-all duration-500 pointer-events-none"></div>
-</body>
 </body>
 </html>
