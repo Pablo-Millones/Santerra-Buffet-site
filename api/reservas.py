@@ -3,6 +3,9 @@ import json
 from urllib.parse import quote
 from datetime import datetime
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 WHATSAPP_NUMBER = '56935621667'
 
@@ -57,8 +60,34 @@ class handler(BaseHTTPRequestHandler):
         email_user = os.environ.get('EMAIL_USER', '')
         email_pass = os.environ.get('EMAIL_PASS', '')
         if reserva['email'] and email_user and email_pass:
-            print(f'[EMAIL] Would send to {reserva["email"]}')
-            email_sent = True
+            try:
+                msg = MIMEMultipart('alternative')
+                msg['From'] = email_user
+                msg['To'] = reserva['email']
+                msg['Subject'] = f'Reserva Santerra Buffet Confirmada #{reserva_id}'
+                html = f"""\
+                <html><body style="font-family:sans-serif;padding:20px">
+                <h2 style="color:#6B1C20;">Reserva Confirmada</h2>
+                <p>Hola <strong>{reserva['name']}</strong>,</p>
+                <table style="border-collapse:collapse;">
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Fecha</td><td style="padding:6px 12px;border:1px solid #ddd;">{formatted_date}</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Hora</td><td style="padding:6px 12px;border:1px solid #ddd;">{reserva['time']}</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Personas</td><td style="padding:6px 12px;border:1px solid #ddd;">{reserva['people']}</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">ID</td><td style="padding:6px 12px;border:1px solid #ddd;">#{reserva_id}</td></tr>
+                </table>
+                <p style="margin-top:20px;">Te esperamos en <strong>Av. San Martín 199, Casino Enjoy, Viña del Mar.</strong></p>
+                <p style="color:#888;">Santerra Buffet</p>
+                </body></html>"""
+                msg.attach(MIMEText(message, 'plain', 'utf-8'))
+                msg.attach(MIMEText(html, 'html', 'utf-8'))
+                with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                    server.starttls()
+                    server.login(email_user, email_pass)
+                    server.sendmail(email_user, reserva['email'], msg.as_string())
+                email_sent = True
+                print(f'[EMAIL] Sent to {reserva["email"]}')
+            except Exception as e:
+                print(f'[EMAIL] Error sending to {reserva["email"]}: {e}')
 
         print(f'[RESERVA] #{reserva_id} - {reserva["name"]} - {reserva["date"]} {reserva["time"]} - {reserva["people"]} personas')
 
