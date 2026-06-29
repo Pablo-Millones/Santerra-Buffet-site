@@ -55,14 +55,18 @@ class handler(BaseHTTPRequestHandler):
             '- Correo: leogenovese.contacto@gmail.com'
         )
         message = (
-            f'Hola {reserva["name"]}, recibimos tu solicitud de reserva en Santerra Buffet:\n'
+            f'✨ Solicitud de Reserva - Santerra Buffet ✨\n'
+            f'-----------------------------------\n'
+            f'Nombre: {reserva["name"]}\n'
             f'Fecha: {formatted_date}\n'
             f'Hora: {reserva["time"]}\n'
             f'Personas: {reserva["people"]}\n'
             f'ID: #{reserva_id}\n\n'
-            f'Para confirmar, debes abonar el 50% del valor total a la siguiente cuenta:\n\n'
+            f'📌 Para CONFIRMAR tu reserva:\n'
+            f'Debes abonar el 50% del valor total a:\n\n'
             f'{bank_info}\n\n'
-            f'Envíanos el comprobante para confirmar tu reserva. Te esperamos en Av. San Martin 199, Casino Enjoy.'
+            f'✅ Envía el comprobante de pago a este WhatsApp para confirmar.\n\n'
+            f'Te esperamos en Av. San Martin 199, Casino Enjoy, Viña del Mar.'
         )
         wa_link = f'https://wa.me/{WHATSAPP_NUMBER}?text={quote(message)}'
 
@@ -74,28 +78,38 @@ class handler(BaseHTTPRequestHandler):
                 msg = MIMEMultipart('alternative')
                 msg['From'] = email_user
                 msg['To'] = reserva['email']
-                msg['Subject'] = f'Reserva Santerra Buffet Confirmada #{reserva_id}'
+                msg['Subject'] = f'Solicitud de Reserva - Santerra Buffet #{reserva_id}'
                 html = f"""\
-                <html><body style="font-family:sans-serif;padding:20px">
-                <h2 style="color:#6B1C20;">Solicitud de Reserva</h2>
+                <html><body style="font-family:sans-serif;padding:20px;max-width:600px;margin:0 auto;">
+                <div style="background:#6B1C20;padding:20px;text-align:center;border-radius:12px 12px 0 0;">
+                <h1 style="color:#fff;margin:0;font-size:22px;">Santerra Buffet</h1>
+                </div>
+                <div style="background:#fff;padding:30px;border:1px solid #eee;border-radius:0 0 12px 12px;">
+                <h2 style="color:#6B1C20;margin-top:0;">Solicitud de Reserva</h2>
                 <p>Hola <strong>{reserva['name']}</strong>,</p>
-                <table style="border-collapse:collapse;">
-                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Fecha</td><td style="padding:6px 12px;border:1px solid #ddd;">{formatted_date}</td></tr>
-                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Hora</td><td style="padding:6px 12px;border:1px solid #ddd;">{reserva['time']}</td></tr>
-                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Personas</td><td style="padding:6px 12px;border:1px solid #ddd;">{reserva['people']}</td></tr>
-                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">ID</td><td style="padding:6px 12px;border:1px solid #ddd;">#{reserva_id}</td></tr>
+                <p>Recibimos tu solicitud con los siguientes datos:</p>
+                <table style="border-collapse:collapse;width:100%;margin:16px 0;">
+                <tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold;background:#f9f9f9;">Fecha</td><td style="padding:8px 12px;border:1px solid #ddd;">{formatted_date}</td></tr>
+                <tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold;background:#f9f9f9;">Hora</td><td style="padding:8px 12px;border:1px solid #ddd;">{reserva['time']}</td></tr>
+                <tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold;background:#f9f9f9;">Personas</td><td style="padding:8px 12px;border:1px solid #ddd;">{reserva['people']}</td></tr>
+                <tr><td style="padding:8px 12px;border:1px solid #ddd;font-weight:bold;background:#f9f9f9;">ID</td><td style="padding:8px 12px;border:1px solid #ddd;">#{reserva_id}</td></tr>
                 </table>
-                <p style="margin-top:20px;"><strong>Para confirmar tu reserva</strong>, debes abonar el <strong>50% del valor total</strong> a la siguiente cuenta:</p>
-                <table style="border-collapse:collapse;margin-top:10px;">
-                <tr><td style="padding:4px 10px;font-weight:bold;">Nombre</td><td style="padding:4px 10px;">Archie SPA</td></tr>
-                <tr><td style="padding:4px 10px;font-weight:bold;">Banco</td><td style="padding:4px 10px;">Santander</td></tr>
-                <tr><td style="padding:4px 10px;font-weight:bold;">Cuenta</td><td style="padding:4px 10px;">0-000-9910355-8 (Corriente)</td></tr>
-                <tr><td style="padding:4px 10px;font-weight:bold;">RUT</td><td style="padding:4px 10px;">78.152.147-7</td></tr>
-                <tr><td style="padding:4px 10px;font-weight:bold;">Correo</td><td style="padding:4px 10px;">leogenovese.contacto@gmail.com</td></tr>
+                <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;padding:16px;margin:16px 0;">
+                <p style="margin:0 0 8px;font-weight:bold;color:#ad6800;">📌 Para CONFIRMAR tu reserva:</p>
+                <p style="margin:0;color:#333;">Debes abonar el <strong>50% del valor total</strong> a la siguiente cuenta:</p>
+                </div>
+                <table style="border-collapse:collapse;width:100%;margin:16px 0;">
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Nombre</td><td style="padding:6px 12px;border:1px solid #ddd;">Archie SPA</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Banco</td><td style="padding:6px 12px;border:1px solid #ddd;">Santander</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Cuenta</td><td style="padding:6px 12px;border:1px solid #ddd;">0-000-9910355-8 (Corriente)</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">RUT</td><td style="padding:6px 12px;border:1px solid #ddd;">78.152.147-7</td></tr>
+                <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Correo</td><td style="padding:6px 12px;border:1px solid #ddd;">leogenovese.contacto@gmail.com</td></tr>
                 </table>
-                <p style="margin-top:20px;">Envía el comprobante para confirmar tu reserva.</p>
+                <p style="margin-top:20px;">✅ Envía el comprobante de pago respondiendo este correo o por WhatsApp para confirmar tu reserva.</p>
                 <p>Te esperamos en <strong>Av. San Martin 199, Casino Enjoy, Viña del Mar.</strong></p>
-                <p style="color:#888;">Santerra Buffet</p>
+                <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+                <p style="color:#888;font-size:12px;text-align:center;">Santerra Buffet — Buffet Gourmet en Casino Enjoy Viña del Mar</p>
+                </div>
                 </body></html>"""
                 msg.attach(MIMEText(message, 'plain', 'utf-8'))
                 msg.attach(MIMEText(html, 'html', 'utf-8'))
@@ -115,7 +129,7 @@ class handler(BaseHTTPRequestHandler):
             'reserva': reserva,
             'email_sent': email_sent,
             'whatsapp_link': wa_link,
-            'message': f'Solicitud #{reserva_id} recibida — revisa tu email con los datos para abonar el 50%'
+            'message': f'Solicitud #{reserva_id} recibida. Revisa tu email con los datos para transferir el 50% y confirma enviando el comprobante por WhatsApp.'
         }
 
         self.send_response(200)
