@@ -53,16 +53,8 @@
         .btn-outline { @apply bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-dark transition-all duration-300 hover:-translate-y-0.5; }
         .btn-primary-sm { @apply bg-primary text-white px-6 py-2 rounded-full font-bold hover:bg-primary-hover transition-all duration-300 shadow-md hover:shadow-lg; }
         
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-            animation: scroll 25s linear infinite;
-        }
-        .animate-scroll:hover {
-            animation-play-state: paused;
-        }
+        #gallery-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+        #gallery-dots .dot.active { background: #C9A84C; width: 28px; border-radius: 5px; }
     </style>
 </head>
 <body class="font-sans text-dark bg-bg-light antialiased selection:bg-primary selection:text-white">
@@ -218,86 +210,23 @@
                 <div class="w-24 h-1 bg-accent mx-auto rounded-full"></div>
             </div>
 
-            <!-- Carrusel Infinito de Fotos -->
-            <div class="relative mb-16">
-                <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark to-transparent z-10 pointer-events-none"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark to-transparent z-10 pointer-events-none"></div>
-                <div class="overflow-hidden rounded-2xl">
-                    <div class="flex animate-scroll" id="photo-track">
-                        <!-- Set 1 -->
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">En Vivo</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Ambiente Único</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Postres y Más</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Frente al Mar</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Platos Gourmet</p>
-                            </div>
-                        </div>
-                        <!-- Set 2 (duplicado para loop infinito) -->
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">En Vivo</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Ambiente Único</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Postres y Más</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Frente al Mar</p>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-72 md:w-80 group relative overflow-hidden rounded-2xl mx-2 cursor-pointer" onclick="openLightbox(this)">
-                            <img src="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" alt="Santerra Buffet" class="w-full h-56 md:h-64 object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                <p class="text-white text-sm font-medium">Platos Gourmet</p>
-                            </div>
-                        </div>
+            <!-- Galeria con navegacion 1x1 -->
+            <div class="relative mb-16 max-w-5xl mx-auto">
+                <div class="relative rounded-2xl overflow-hidden bg-black/40" id="gallery-container">
+                    <div class="aspect-[16/9] md:aspect-[21/9] relative">
+                        <img id="gallery-img" src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(document.getElementById('gallery-img'))" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                        <p id="gallery-caption" class="absolute bottom-4 left-6 text-white text-sm md:text-base font-medium pointer-events-none">En Vivo</p>
+                        <p id="gallery-counter" class="absolute top-4 right-6 text-white/80 text-sm font-mono bg-black/50 px-3 py-1 rounded-full pointer-events-none"></p>
                     </div>
+                    <button onclick="galleryPrev()" class="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white rounded-full flex items-center justify-center transition-all duration-300 z-10 shadow-lg">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <button onclick="galleryNext()" class="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white rounded-full flex items-center justify-center transition-all duration-300 z-10 shadow-lg">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
                 </div>
+                <div class="flex justify-center gap-2 mt-4" id="gallery-dots"></div>
             </div>
 
             <!-- Videos (los 4 más recientes) -->
@@ -348,9 +277,16 @@
     </section>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[60] hidden items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Galería Santerra" class="max-w-full max-h-full object-contain rounded-lg">
-        <button class="absolute top-4 right-4 text-white text-3xl hover:text-accent transition-colors" onclick="closeLightbox()">&times;</button>
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[60] hidden items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl hover:text-accent transition-colors z-10">&times;</button>
+        <button onclick="galleryPrev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 text-white rounded-full flex items-center justify-center transition-all z-10">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Galería Santerra" class="max-w-full max-h-full object-contain rounded-lg cursor-pointer" onclick="closeLightbox()">
+        <button onclick="galleryNext()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/25 text-white rounded-full flex items-center justify-center transition-all z-10">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
+        <p id="lightbox-counter" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm font-mono bg-black/50 px-4 py-1 rounded-full"></p>
     </div>
 
     <section id="horarios" class="py-24 bg-bg-light">
@@ -765,24 +701,37 @@
 
         // Lightbox
         function openLightbox(el) {
-            const img = el.querySelector('img');
-            if (img) {
-                document.getElementById('lightbox-img').src = img.src;
+            const src = el.tagName === 'IMG' ? el.src : el.querySelector('img')?.src;
+            if (src) {
+                const lbImg = document.getElementById('lightbox-img');
+                lbImg.src = src;
+                const lbCounter = document.getElementById('lightbox-counter');
+                if (lbCounter) lbCounter.textContent = document.getElementById('gallery-counter')?.textContent || '';
                 document.getElementById('lightbox').classList.remove('hidden');
                 document.getElementById('lightbox').classList.add('flex');
                 document.body.style.overflow = 'hidden';
             }
         }
 
+        function updateLightboxFromGallery() {
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCounter = document.getElementById('lightbox-counter');
+            if (lbImg && !lbImg.closest('#lightbox.hidden')) {
+                lbImg.src = galleryImages[currentIdx].src;
+                if (lbCounter) lbCounter.textContent = `${currentIdx + 1} / ${galleryImages.length}`;
+            }
+        }
+
+        // Patch galleryNext/galleryPrev to update lightbox
+        const origNext = galleryNext, origPrev = galleryPrev;
+        galleryNext = function() { origNext(); updateLightboxFromGallery(); };
+        galleryPrev = function() { origPrev(); updateLightboxFromGallery(); };
+
         function closeLightbox() {
             document.getElementById('lightbox').classList.add('hidden');
             document.getElementById('lightbox').classList.remove('flex');
             document.body.style.overflow = '';
         }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
-        });
 
         // Video Play/Pause
         function playVideo(el) {
@@ -831,11 +780,62 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.gallery-item, .video-card').forEach((item, i) => {
+        document.querySelectorAll('.video-card').forEach((item, i) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px) scale(0.95)';
             item.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
             galleryObserver.observe(item);
+        });
+
+        // Galeria 1x1 con navegacion
+        const galleryImages = [
+            { src: 'assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg', label: 'En Vivo' },
+            { src: 'assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg', label: 'Ambiente Único' },
+            { src: 'assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg', label: 'Postres y Más' },
+            { src: 'assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg', label: 'Frente al Mar' },
+            { src: 'assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg', label: 'Platos Gourmet' },
+            { src: 'assets/galeria/SaveClip.App_724133790_17886932073571460_3242714873766376402_n.jpg', label: 'Nuestras Pastas' },
+            { src: 'assets/galeria/SaveClip.App_725237275_17886932082571460_7706802138612610907_n.jpg', label: 'Degustación' },
+            { src: 'assets/galeria/santerra_pastas.jpg', label: 'Estación de Pastas' }
+        ];
+        let currentIdx = 0;
+        const galleryImg = document.getElementById('gallery-img');
+        const galleryCaption = document.getElementById('gallery-caption');
+        const galleryCounter = document.getElementById('gallery-counter');
+        const galleryDots = document.getElementById('gallery-dots');
+
+        function renderGallery(idx) {
+            currentIdx = idx;
+            const item = galleryImages[idx];
+            galleryImg.src = item.src;
+            galleryImg.alt = item.label;
+            galleryCaption.textContent = item.label;
+            galleryCounter.textContent = `${idx + 1} / ${galleryImages.length}`;
+            document.querySelectorAll('#gallery-dots .dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === idx);
+            });
+        }
+
+        function galleryNext() {
+            renderGallery((currentIdx + 1) % galleryImages.length);
+        }
+
+        function galleryPrev() {
+            renderGallery((currentIdx - 1 + galleryImages.length) % galleryImages.length);
+        }
+
+        galleryImages.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => renderGallery(i);
+            galleryDots.appendChild(dot);
+        });
+        renderGallery(0);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') galleryPrev();
+            if (e.key === 'ArrowRight') galleryNext();
+            if (e.key === 'Escape') closeLightbox();
         });
 
         function copiarDatosBancarios() {
