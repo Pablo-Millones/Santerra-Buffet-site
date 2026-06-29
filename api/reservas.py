@@ -40,19 +40,29 @@ class handler(BaseHTTPRequestHandler):
             'date': body.get('date', ''),
             'time': body.get('time', ''),
             'people': body.get('people', 0),
-            'status': 'confirmada',
+            'status': 'pendiente',
             'created_at': datetime.now().isoformat()
         }
 
         date_obj = datetime.strptime(reserva['date'], '%Y-%m-%d')
         formatted_date = date_obj.strftime('%d/%m/%Y')
+        bank_info = (
+            'Datos para transferencia:\n'
+            '- Nombre: Archie SPA\n'
+            '- Banco: Santander\n'
+            '- Cuenta Corriente: 0-000-9910355-8\n'
+            '- RUT: 78.152.147-7\n'
+            '- Correo: leogenovese.contacto@gmail.com'
+        )
         message = (
-            f'Hola {reserva["name"]}, tu reserva en Santerra Buffet esta confirmada:\n'
+            f'Hola {reserva["name"]}, recibimos tu solicitud de reserva en Santerra Buffet:\n'
             f'Fecha: {formatted_date}\n'
             f'Hora: {reserva["time"]}\n'
             f'Personas: {reserva["people"]}\n'
             f'ID: #{reserva_id}\n\n'
-            f'Te esperamos! Avenida San Martin 199, Casino Enjoy.'
+            f'Para confirmar, debes abonar el 50% del valor total a la siguiente cuenta:\n\n'
+            f'{bank_info}\n\n'
+            f'Envíanos el comprobante para confirmar tu reserva. Te esperamos en Av. San Martin 199, Casino Enjoy.'
         )
         wa_link = f'https://wa.me/{WHATSAPP_NUMBER}?text={quote(message)}'
 
@@ -67,7 +77,7 @@ class handler(BaseHTTPRequestHandler):
                 msg['Subject'] = f'Reserva Santerra Buffet Confirmada #{reserva_id}'
                 html = f"""\
                 <html><body style="font-family:sans-serif;padding:20px">
-                <h2 style="color:#6B1C20;">Reserva Confirmada</h2>
+                <h2 style="color:#6B1C20;">Solicitud de Reserva</h2>
                 <p>Hola <strong>{reserva['name']}</strong>,</p>
                 <table style="border-collapse:collapse;">
                 <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Fecha</td><td style="padding:6px 12px;border:1px solid #ddd;">{formatted_date}</td></tr>
@@ -75,7 +85,16 @@ class handler(BaseHTTPRequestHandler):
                 <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">Personas</td><td style="padding:6px 12px;border:1px solid #ddd;">{reserva['people']}</td></tr>
                 <tr><td style="padding:6px 12px;border:1px solid #ddd;font-weight:bold;">ID</td><td style="padding:6px 12px;border:1px solid #ddd;">#{reserva_id}</td></tr>
                 </table>
-                <p style="margin-top:20px;">Te esperamos en <strong>Av. San Martín 199, Casino Enjoy, Viña del Mar.</strong></p>
+                <p style="margin-top:20px;"><strong>Para confirmar tu reserva</strong>, debes abonar el <strong>50% del valor total</strong> a la siguiente cuenta:</p>
+                <table style="border-collapse:collapse;margin-top:10px;">
+                <tr><td style="padding:4px 10px;font-weight:bold;">Nombre</td><td style="padding:4px 10px;">Archie SPA</td></tr>
+                <tr><td style="padding:4px 10px;font-weight:bold;">Banco</td><td style="padding:4px 10px;">Santander</td></tr>
+                <tr><td style="padding:4px 10px;font-weight:bold;">Cuenta</td><td style="padding:4px 10px;">0-000-9910355-8 (Corriente)</td></tr>
+                <tr><td style="padding:4px 10px;font-weight:bold;">RUT</td><td style="padding:4px 10px;">78.152.147-7</td></tr>
+                <tr><td style="padding:4px 10px;font-weight:bold;">Correo</td><td style="padding:4px 10px;">leogenovese.contacto@gmail.com</td></tr>
+                </table>
+                <p style="margin-top:20px;">Envía el comprobante para confirmar tu reserva.</p>
+                <p>Te esperamos en <strong>Av. San Martin 199, Casino Enjoy, Viña del Mar.</strong></p>
                 <p style="color:#888;">Santerra Buffet</p>
                 </body></html>"""
                 msg.attach(MIMEText(message, 'plain', 'utf-8'))
@@ -96,7 +115,7 @@ class handler(BaseHTTPRequestHandler):
             'reserva': reserva,
             'email_sent': email_sent,
             'whatsapp_link': wa_link,
-            'message': f'Reserva #{reserva_id} confirmada'
+            'message': f'Solicitud #{reserva_id} recibida — revisa tu email con los datos para abonar el 50%'
         }
 
         self.send_response(200)
