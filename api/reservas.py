@@ -27,7 +27,7 @@ class handler(BaseHTTPRequestHandler):
         length = int(self.headers.get('Content-Length', 0))
         body = json.loads(self.rfile.read(length))
 
-        reserva_id = format(datetime.now().timestamp(), 'x').upper()
+        reserva_id = format(int(datetime.now().timestamp()), 'x').upper()
 
         reserva = {
             'id': reserva_id,
