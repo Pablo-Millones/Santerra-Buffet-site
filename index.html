@@ -212,10 +212,35 @@
         </div>
 
         <!-- Galeria con navegacion 1x1 (full width) -->
-        <div class="w-full">
+        <div class="w-full overflow-hidden">
             <div class="relative bg-black/40" id="gallery-container">
-                <div class="aspect-[16/9] md:aspect-[21/9] relative">
-                    <img id="gallery-img" src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover cursor-pointer" onclick="openLightbox(document.getElementById('gallery-img'))" loading="lazy">
+                <div class="aspect-[16/9] md:aspect-[21/9] relative overflow-hidden">
+                    <div id="gallery-track" class="flex h-full transition-transform duration-700 ease-in-out">
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[0].src)">
+                            <img src="assets/galeria/SaveClip.App_730320893_17888374281571460_9127575300453143801_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[1].src)">
+                            <img src="assets/galeria/SaveClip.App_730083595_17888374293571460_6280723181072094460_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[2].src)">
+                            <img src="assets/galeria/SaveClip.App_729466950_17888374284571460_4549271228257180644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[3].src)">
+                            <img src="assets/galeria/SaveClip.App_727287290_17887419225571460_3033377415232283990_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[4].src)">
+                            <img src="assets/galeria/SaveClip.App_726891718_17887744200571460_2668872576654567644_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[5].src)">
+                            <img src="assets/galeria/SaveClip.App_724133790_17886932073571460_3242714873766376402_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[6].src)">
+                            <img src="assets/galeria/SaveClip.App_725237275_17886932082571460_7706802138612610907_n.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="w-full h-full flex-shrink-0 relative cursor-pointer" onclick="openLightboxSrc(galleryImages[7].src)">
+                            <img src="assets/galeria/santerra_pastas.jpg" alt="Santerra Buffet" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                    </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
                     <p id="gallery-caption" class="absolute bottom-4 left-6 text-white text-sm md:text-base font-medium pointer-events-none">En Vivo</p>
                     <p id="gallery-counter" class="absolute top-4 right-6 text-white/80 text-sm font-mono bg-black/50 px-3 py-1 rounded-full pointer-events-none"></p>
@@ -701,13 +726,11 @@
         }
 
         // Lightbox
-        function openLightbox(el) {
-            const src = el.tagName === 'IMG' ? el.src : el.querySelector('img')?.src;
+        function openLightboxSrc(src) {
             if (src) {
-                const lbImg = document.getElementById('lightbox-img');
-                lbImg.src = src;
+                document.getElementById('lightbox-img').src = src;
                 const lbCounter = document.getElementById('lightbox-counter');
-                if (lbCounter) lbCounter.textContent = document.getElementById('gallery-counter')?.textContent || '';
+                if (lbCounter) lbCounter.textContent = `${currentIdx + 1} / ${galleryImages.length}`;
                 document.getElementById('lightbox').classList.remove('hidden');
                 document.getElementById('lightbox').classList.add('flex');
                 document.body.style.overflow = 'hidden';
@@ -717,7 +740,7 @@
         function updateLightboxFromGallery() {
             const lbImg = document.getElementById('lightbox-img');
             const lbCounter = document.getElementById('lightbox-counter');
-            if (lbImg && !lbImg.closest('#lightbox.hidden')) {
+            if (lbImg && document.getElementById('lightbox').classList.contains('flex')) {
                 lbImg.src = galleryImages[currentIdx].src;
                 if (lbCounter) lbCounter.textContent = `${currentIdx + 1} / ${galleryImages.length}`;
             }
@@ -800,7 +823,7 @@
             { src: 'assets/galeria/santerra_pastas.jpg', label: 'Estación de Pastas' }
         ];
         let currentIdx = 0;
-        const galleryImg = document.getElementById('gallery-img');
+        const galleryTrack = document.getElementById('gallery-track');
         const galleryCaption = document.getElementById('gallery-caption');
         const galleryCounter = document.getElementById('gallery-counter');
         const galleryDots = document.getElementById('gallery-dots');
@@ -808,8 +831,7 @@
         function renderGallery(idx) {
             currentIdx = idx;
             const item = galleryImages[idx];
-            galleryImg.src = item.src;
-            galleryImg.alt = item.label;
+            galleryTrack.style.transform = `translateX(-${idx * 100}%)`;
             galleryCaption.textContent = item.label;
             galleryCounter.textContent = `${idx + 1} / ${galleryImages.length}`;
             document.querySelectorAll('#gallery-dots .dot').forEach((dot, i) => {
@@ -817,13 +839,8 @@
             });
         }
 
-        function galleryNext() {
-            renderGallery((currentIdx + 1) % galleryImages.length);
-        }
-
-        function galleryPrev() {
-            renderGallery((currentIdx - 1 + galleryImages.length) % galleryImages.length);
-        }
+        function galleryNext() { renderGallery((currentIdx + 1) % galleryImages.length); }
+        function galleryPrev() { renderGallery((currentIdx - 1 + galleryImages.length) % galleryImages.length); }
 
         galleryImages.forEach((_, i) => {
             const dot = document.createElement('span');
