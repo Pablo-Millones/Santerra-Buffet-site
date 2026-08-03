@@ -1,46 +1,64 @@
-# Santerra Buffet - Propuesta de Diseño
+# Santerra Buffet — experiencia web para restaurante
 
-> Propuesta de diseño desarrollada con fines demostrativos. No corresponde al sitio oficial.
+Propuesta de diseño y desarrollo creada como proyecto de portafolio. Combina una experiencia visual responsiva con reservas, contacto por WhatsApp y un asistente gastronómico basado en IA.
 
-**Sitio en vivo:** [https://santerra-demo.vercel.app](https://santerra-demo.vercel.app)
+> Este proyecto es demostrativo y no corresponde al sitio oficial de Santerra Buffet.
+
+**Demo:** [santerra-demo.vercel.app](https://santerra-demo.vercel.app)
 
 ## Funcionalidades
 
-- **Chef Virtual de IA** — Genera sugerencias personalizadas de pastas vía NVIDIA NIM API (Llama 3.1)
-- **Sistema de Reservas** — Formulario que envía datos por email SMTP y abre WhatsApp con instrucciones de abono del 50%
-- **Galería Multimedia** — 8 imágenes con auto-slide cada 5s, navegación 1x1 con dots y flechas, lightbox interactivo
-- **Videos** — 4 videos en grilla responsive con reproducción in-page
-- **Datos Bancarios** — Cuenta corriente Santander con copiado al portapapeles y toast de confirmación
-- **Mapa Interactivo** — Ubicación en Google Maps (Casino Enjoy Viña del Mar)
-- **Menú Responsivo** — Hamburger menu animado para móvil con transiciones suaves
-- **Scroll Animado** — Navegación suave entre secciones
-- **WhatsApp Directo** — Enlaces con mensajes pre-armados para contacto y confirmación
+- Formulario de reservas con notificación por correo y continuación por WhatsApp.
+- Asistente de pastas con IA mediante NVIDIA NIM.
+- Galería multimedia, videos, lightbox y navegación adaptable a móviles.
+- Información de contacto, ubicación en Google Maps y datos útiles para el cliente.
+- APIs serverless preparadas para despliegue en Vercel.
+- Rediseño modular con Next.js, React, TypeScript, Tailwind CSS y Framer Motion.
 
-## Tech Stack
+## Arquitectura
 
-- **Frontend:** HTML5, Tailwind CSS (CDN), Font Awesome
-- **Backend:** Python (API serverless en Vercel)
-- **IA:** NVIDIA NIM API (Llama 3.1 8B)
-- **Email:** SMTP Gmail con contraseña de aplicación
-- **Deploy:** Vercel (static + serverless functions)
+El repositorio conserva dos implementaciones:
 
-## APIs
+- **Prototipo desplegado:** `index.html`, `assets/` y funciones Python en `api/`.
+- **Rediseño Next.js:** aplicación modular dentro de `buffet-santerra/`, con componentes reutilizables y datos desacoplados de la interfaz.
 
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/api/reservas` | POST | Envía datos de reserva por email y genera link de WhatsApp |
-| `/api/reservas` | GET | Health check |
-| `/api/pasta` | POST | Genera sugerencia de pasta con IA |
+## Tecnologías
 
-## Ejecutar local
+- Frontend: HTML5, TypeScript, React, Next.js, Tailwind CSS y Framer Motion.
+- Backend: funciones serverless en Python y una implementación alternativa en JavaScript.
+- Integraciones: NVIDIA NIM, SMTP, WhatsApp y Google Maps.
+- Despliegue: Vercel.
 
-```bash
-pip install -r requirements.txt
-python server.py
+## Ejecutar el rediseño Next.js
+
+```powershell
+cd buffet-santerra
+npm install
+npm run dev
 ```
 
-Abrir http://localhost:8080
+Abre [http://localhost:3000](http://localhost:3000).
 
-## Aviso
+## Variables de entorno
 
-Este proyecto es una propuesta de diseño con fines demostrativos y de portafolio. No está afiliado ni es representativo del sitio oficial de Santerra Buffet.
+Copia `.env.example` y configura las credenciales únicamente en tu entorno local o en Vercel:
+
+```text
+NVIDIA_API_KEY=
+EMAIL_USER=
+EMAIL_PASS=
+```
+
+Nunca publiques claves, contraseñas de aplicación ni datos reales de reservas.
+
+## Endpoints del prototipo
+
+| Endpoint | Método | Propósito |
+| --- | --- | --- |
+| `/api/pasta` | POST | Generar una sugerencia personalizada mediante IA. |
+| `/api/reservas` | POST | Procesar la solicitud y enviar una notificación por correo. |
+| `/api/reservas` | GET | Comprobar el estado de la función. |
+
+## Enfoque del proyecto
+
+El objetivo fue resolver un caso de negocio completo: atraer clientes, presentar la oferta, responder consultas y facilitar una reserva desde una sola experiencia web.
